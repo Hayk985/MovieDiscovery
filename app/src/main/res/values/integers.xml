@@ -1,0 +1,4 @@
+<resources>
+    <integer name="movie_grid_span_count">2</integer>
+    <integer name="movie_grid_span_count_land">4</integer>
+</resources>

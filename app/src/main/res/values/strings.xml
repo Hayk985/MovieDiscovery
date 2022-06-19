@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Movie Discovery</string>
+
+    <string name="menu_popular_movies">Popular</string>
+    <string name="menu_top_rated_movies">Top-rated</string>
+    <string name="menu_upcoming_movies">Upcoming</string>
+    <string name="menu_search_movies">Search</string>
+    <string name="movie_popularity">Popularity</string>
+    <string name="movie_average_vote_count">%s/10</string>
+    <string name="try_again">Try again</string>
+
+    <!-- Search -->
+    <string name="search_type_something">Type something…</string>
+    <string name="search_no_result">No search result found</string>
+
+    <!-- Error messages -->
+    <string name="error_no_connection">No connection. Please check your network and try again</string>
+    <string name="error_internal">Internal error occurred, please try again</string>
+    <string name="error_unknown">An error occurred, please try again</string>
+
+</resources>
