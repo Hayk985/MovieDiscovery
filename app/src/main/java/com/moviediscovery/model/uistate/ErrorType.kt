@@ -1,4 +1,4 @@
-package com.moviediscovery.ui.uistate
+package com.moviediscovery.model.uistate
 
 import androidx.annotation.StringRes
 import com.moviediscovery.R

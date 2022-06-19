@@ -15,7 +15,7 @@ import com.moviediscovery.app.makeVisible
 import com.moviediscovery.app.setDataIfAvailable
 import com.moviediscovery.databinding.FragmentMovieDetailBinding
 import com.moviediscovery.model.MovieDetails
-import com.moviediscovery.ui.uistate.UIState
+import com.moviediscovery.model.uistate.UIState
 import com.moviediscovery.utils.DateUtils
 import com.moviediscovery.utils.UrlHelper
 import dagger.hilt.android.AndroidEntryPoint

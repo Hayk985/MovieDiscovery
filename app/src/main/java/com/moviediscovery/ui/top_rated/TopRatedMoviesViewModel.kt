@@ -10,9 +10,9 @@ import com.moviediscovery.data.repository.MovieRepository
 import com.moviediscovery.model.Movie
 import com.moviediscovery.model.MovieData
 import com.moviediscovery.model.MovieType
-import com.moviediscovery.ui.uistate.ErrorType
-import com.moviediscovery.ui.uistate.ErrorUIState
-import com.moviediscovery.ui.uistate.UIState
+import com.moviediscovery.model.uistate.ErrorType
+import com.moviediscovery.model.uistate.ErrorUIState
+import com.moviediscovery.model.uistate.UIState
 import com.moviediscovery.utils.ConnectivityHelper
 import com.moviediscovery.utils.ErrorUtils
 import dagger.hilt.android.lifecycle.HiltViewModel

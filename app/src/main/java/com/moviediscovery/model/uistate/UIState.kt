@@ -1,4 +1,4 @@
-package com.moviediscovery.ui.uistate
+package com.moviediscovery.model.uistate
 
 sealed interface UIState<out T> {
     object ShowEmptyData : UIState<Nothing>

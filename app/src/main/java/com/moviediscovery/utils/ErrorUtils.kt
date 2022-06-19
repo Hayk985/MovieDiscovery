@@ -1,6 +1,6 @@
 package com.moviediscovery.utils
 
-import com.moviediscovery.ui.uistate.ErrorType
+import com.moviediscovery.model.uistate.ErrorType
 import java.net.UnknownHostException
 
 object ErrorUtils {

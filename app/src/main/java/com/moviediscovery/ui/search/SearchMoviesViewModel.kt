@@ -7,10 +7,10 @@ import com.moviediscovery.common.Pagination
 import com.moviediscovery.data.repository.MovieRepository
 import com.moviediscovery.model.Movie
 import com.moviediscovery.model.MovieData
-import com.moviediscovery.ui.uistate.ErrorType
-import com.moviediscovery.ui.uistate.ErrorUIState
-import com.moviediscovery.ui.uistate.SearchUIState
-import com.moviediscovery.ui.uistate.UIState
+import com.moviediscovery.model.uistate.ErrorType
+import com.moviediscovery.model.uistate.ErrorUIState
+import com.moviediscovery.model.uistate.SearchUIState
+import com.moviediscovery.model.uistate.UIState
 import com.moviediscovery.utils.ConnectivityHelper
 import com.moviediscovery.utils.Constants
 import com.moviediscovery.utils.ErrorUtils

@@ -4,8 +4,8 @@ import androidx.lifecycle.*
 import com.moviediscovery.api.Resource
 import com.moviediscovery.data.repository.MovieDetailsRepository
 import com.moviediscovery.model.MovieDetails
-import com.moviediscovery.ui.uistate.ErrorUIState
-import com.moviediscovery.ui.uistate.UIState
+import com.moviediscovery.model.uistate.ErrorUIState
+import com.moviediscovery.model.uistate.UIState
 import com.moviediscovery.utils.Constants
 import com.moviediscovery.utils.ErrorUtils
 import dagger.hilt.android.lifecycle.HiltViewModel

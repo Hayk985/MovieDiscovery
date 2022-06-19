@@ -21,9 +21,9 @@ import com.moviediscovery.app.makeVisible
 import com.moviediscovery.databinding.FragmentSearchBinding
 import com.moviediscovery.model.Movie
 import com.moviediscovery.ui.MovieAdapter
-import com.moviediscovery.ui.uistate.ErrorUIState
-import com.moviediscovery.ui.uistate.SearchUIState
-import com.moviediscovery.ui.uistate.UIState
+import com.moviediscovery.model.uistate.ErrorUIState
+import com.moviediscovery.model.uistate.SearchUIState
+import com.moviediscovery.model.uistate.UIState
 import com.moviediscovery.utils.ConnectivityHelper
 import com.moviediscovery.utils.RecyclerViewEndReachedListener
 import dagger.hilt.android.AndroidEntryPoint
