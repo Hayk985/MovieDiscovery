@@ -99,4 +99,5 @@ dependencies {
     // Test
     testImplementation(Dependencies.jUnit)
     implementation(Dependencies.androidJUnit)
+    androidTestImplementation(Dependencies.coroutineTest)
 }

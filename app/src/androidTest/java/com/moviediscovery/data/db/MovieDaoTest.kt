@@ -3,7 +3,8 @@ package com.moviediscovery.data.db
 import com.moviediscovery.model.MovieType
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -12,6 +13,7 @@ import org.junit.Test
 import javax.inject.Inject
 import javax.inject.Named
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @HiltAndroidTest
 class MovieDaoTest {
 
@@ -30,7 +32,7 @@ class MovieDaoTest {
     }
 
     @Test
-    fun cacheMovies() = runBlocking {
+    fun cacheMovies() = runTest {
         val movieEntity = MovieEntity(
             movieId = 1321,
             title = "Spider man",
@@ -45,7 +47,7 @@ class MovieDaoTest {
     }
 
     @Test
-    fun clearCache() {
+    fun clearCache() = runTest {
         val movieEntity = MovieEntity(
             movieId = 1321,
             title = "Spider man",
@@ -54,12 +56,10 @@ class MovieDaoTest {
             movieType = MovieType.POPULAR.type,
             id = 1)
 
-        runBlocking {
-            movieDao.cacheMovies(mutableListOf(movieEntity))
-            movieDao.clearCache(MovieType.POPULAR.type)
-            val cachedMovies = movieDao.getMovies(MovieType.POPULAR.type)
-            assertEquals(true, cachedMovies.isEmpty())
-        }
+        movieDao.cacheMovies(mutableListOf(movieEntity))
+        movieDao.clearCache(MovieType.POPULAR.type)
+        val cachedMovies = movieDao.getMovies(MovieType.POPULAR.type)
+        assertEquals(true, cachedMovies.isEmpty())
     }
 
     @After
