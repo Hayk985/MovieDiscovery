@@ -1,6 +1,7 @@
 package com.moviediscovery.common
 
 import androidx.annotation.IntRange
+import javax.inject.Inject
 
 interface Pagination {
     companion object {
@@ -14,7 +15,7 @@ interface Pagination {
     fun hasNextPage(): Boolean
 }
 
-class PaginationImpl : Pagination {
+class PaginationImpl @Inject constructor() : Pagination {
 
     /**
      * Using this API we can't request more than 500 pages
