@@ -15,7 +15,6 @@ import com.moviediscovery.utils.ConnectivityHelper
 import com.moviediscovery.utils.Constants
 import com.moviediscovery.utils.ErrorUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
@@ -43,31 +42,29 @@ class SearchMoviesViewModel @Inject constructor(
 
     @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
     private fun initSearchFlow() {
-        viewModelScope.launch(Dispatchers.IO) {
-            searchQueryState
-                .debounce(Constants.SEARCH_DEBOUNCE_TIME)
-                .filter {
-                    if (it.isBlank() || it.length <= 1) {
-                        _searchUIState.emit(UIState.ShowEmptyData)
-                        _moviesList.clear()
-                        return@filter false
-                    }
-
-                    if (!ConnectivityHelper.hasInternetConnection()) {
-                        sendErrorMessage(ErrorType.NETWORK_ERROR)
-                        return@filter false
-                    }
-
-                    it.isNotEmpty()
-                }.flatMapLatest {
-                    performSearch(it)
-                }.collectLatest {
-                    handleResponse(it)
+        searchQueryState
+            .debounce(Constants.SEARCH_DEBOUNCE_TIME)
+            .filter {
+                if (it.isBlank() || it.length <= 1) {
+                    _searchUIState.emit(UIState.ShowEmptyData)
+                    _moviesList.clear()
+                    return@filter false
                 }
-        }
+
+                it.isNotEmpty()
+            }.flatMapLatest {
+                performSearch(it)
+            }.onEach {
+                handleResponse(it)
+            }.launchIn(viewModelScope)
     }
 
     fun searchMovies(query: String) {
+        if (!ConnectivityHelper.hasInternetConnection()) {
+            sendErrorMessage(ErrorType.NETWORK_ERROR)
+            return
+        }
+
         searchQueryState.value = query
     }
 
