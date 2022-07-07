@@ -1,6 +1,6 @@
 ## Movie Discovery
 
-An application where you can <i>**discover <i>popular, top-rated, and upcoming**</i> movies.
+An application where you can ***discover <i>popular, top-rated, and upcoming*** movies.
 The application has search functionality. You can use it and find your desired movie.
 By clicking on your desired movie you'll get detailed information.
 
