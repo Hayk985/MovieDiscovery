@@ -14,12 +14,12 @@ There are the following screens in the app:
 - MovieDetails
 
 ### Screenshots
-![Popular](/screenshots/popular_movies_screen.jpg "Popular")
-![Top_rated](/screenshots/top_rated_movies_screen.jpg "Top Rated")
-![Upcoming](/screenshots/upcoming_movies_screen.jpg "Upcoming")
-![Search](/screenshots/search_screen.jpg "Search")
-![Search_not_found](/screenshots/search_not_found_screen.jpg "Search Not Found")
-![Detail](/screenshots/detail_screen.jpg "Detail")
+<img alt="Popular" title="Popular" width="216" height="427" src="/screenshots/popular_movies_screen.jpg"/>
+<img alt="Popular" title="Top Rated" width="216" height="427" src="/screenshots/top_rated_movies_screen.jpg"/>
+<img alt="Popular" title="Upcoming" width="216" height="427" src="/screenshots/upcoming_movies_screen.jpg"/>
+<img alt="Popular" title="Search" width="216" height="427" src="/screenshots/search_screen.jpg"/>
+<img alt="Popular" title="Search Not Found" width="216" height="427" src="/screenshots/search_not_found_screen.jpg"/>
+<img alt="Popular" title="Detail" width="216" height="427" src="/screenshots/detail_screen.jpg"/>
 
 ### The architecture and technical documentation
 
