@@ -4,6 +4,12 @@ An application where you can ***discover popular, top-rated, and upcoming*** mov
 The application has search functionality. You can use it and find your desired movie.
 By clicking on your desired movie you'll get detailed information.
 
+### Disclaimer
+In order to use the application you need to sign up and generate an ***API key*** following
+the instructions <a href="https://developers.themoviedb.org/3/getting-started/introduction">here</a>
+To use the application with production build, you need to generate a keystore file "keystore.jks"
+in the "key" folder and add the corresponding values in "keystore.properties" file.
+
 ### Available screen in the app
 
 There are the following screens in the app:
