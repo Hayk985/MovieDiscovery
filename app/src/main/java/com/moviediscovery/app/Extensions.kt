@@ -3,6 +3,7 @@ package com.moviediscovery.app
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.moviediscovery.R
 import com.moviediscovery.api.responses.details.MovieDetailApiModel
@@ -13,11 +14,11 @@ import com.moviediscovery.model.MovieDetails
 import com.moviediscovery.model.MovieType
 
 fun View.makeVisible() {
-    this.visibility = View.VISIBLE
+    this.isVisible = true
 }
 
 fun View.makeGone() {
-    this.visibility = View.GONE
+    this.isVisible = false
 }
 
 fun View.setDataIfAvailable(isVisible: Boolean, execute: () -> Unit) {

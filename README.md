@@ -13,6 +13,14 @@ There are the following screens in the app:
 - SearchMovies
 - MovieDetails
 
+### Screenshots
+![Popular](/screenshots/popular_movies_screen.jpg "Popular")
+![Top_rated](/screenshots/top_rated_movies_screen.jpg "Top Rated")
+![Upcoming](/screenshots/upcoming_movies_screen.jpg "Upcoming")
+![Search](/screenshots/search_screen.jpg "Search")
+![Search_not_found](/screenshots/search_not_found_screen.jpg "Search Not Found")
+![Detail](/screenshots/detail_screen.jpg "Detail")
+
 ### The architecture and technical documentation
 
 TMDB API is used for getting the movies.

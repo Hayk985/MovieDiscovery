@@ -90,7 +90,7 @@ class MovieDetailsFragment : Fragment() {
             tvVote.setDataIfAvailable(isVisible = movieDetails.voteAverage != null) {
                 imgVote.makeVisible()
                 tvVote.text = getString(R.string.movie_average_vote_count,
-                    movieDetails.voteAverage.toString())
+                    String.format(DOUBLE_FORMAT, movieDetails.voteAverage))
             }
 
             tvReleaseDate.setDataIfAvailable(isVisible = !movieDetails.releaseDate.isNullOrBlank()) {
@@ -126,5 +126,9 @@ class MovieDetailsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private companion object {
+        const val DOUBLE_FORMAT = "%.1f"
     }
 }

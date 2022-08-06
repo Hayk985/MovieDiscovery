@@ -10,11 +10,11 @@ object DateUtils {
     private const val INPUT_DATE_FORMAT_PATTERN = "yyyy-MM-dd"
     private const val OUTPUT_DATE_FORMAT_PATTERN = "dd \nMMM \nyyyy"
 
-    private val inputDateFormat: DateFormat by lazy {
+    private val inputDateFormat: DateFormat by lazy(mode = LazyThreadSafetyMode.NONE) {
         SimpleDateFormat(INPUT_DATE_FORMAT_PATTERN, Locale.US)
     }
 
-    private val outputDateFormat: DateFormat by lazy {
+    private val outputDateFormat: DateFormat by lazy(mode = LazyThreadSafetyMode.NONE) {
         SimpleDateFormat(OUTPUT_DATE_FORMAT_PATTERN, Locale.US)
     }
 

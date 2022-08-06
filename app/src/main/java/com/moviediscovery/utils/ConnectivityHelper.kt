@@ -8,7 +8,7 @@ import com.moviediscovery.app.MovieApp
 
 object ConnectivityHelper {
 
-    private val connectivityManager by lazy {
+    private val connectivityManager by lazy(mode = LazyThreadSafetyMode.NONE) {
         MovieApp.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     }
 
