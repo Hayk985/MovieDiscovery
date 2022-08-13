@@ -37,7 +37,7 @@ class UpcomingMoviesFragment : Fragment() {
     ): View {
         _binding = FragmentMoviesBinding.inflate(inflater, container, false)
 
-        movieAdapter = MovieAdapter { movieId ->
+        movieAdapter = MovieAdapter(requireContext()) { movieId ->
             if (!ConnectivityHelper.hasInternetConnection()) {
                 Toast.makeText(
                     context, getString(R.string.error_no_connection), Toast.LENGTH_SHORT
@@ -97,11 +97,9 @@ class UpcomingMoviesFragment : Fragment() {
                     displayMovies(state.data)
                 }
                 is UIState.ShowError -> {
-                    displayError(state.errorUIState)
+                    displayError(state.errorUIState, state.data)
                 }
-                else -> {
-                    /* NO-OP */
-                }
+                else -> Unit
             }
         }
     }
@@ -111,7 +109,7 @@ class UpcomingMoviesFragment : Fragment() {
         movieAdapter?.movies = movieList
     }
 
-    private fun displayError(errorUIState: ErrorUIState) {
+    private fun displayError(errorUIState: ErrorUIState, movieList: List<Movie>?) {
         val errorMessage = getString(errorUIState.errorType.errorMessageResId)
         when (errorUIState) {
             is ErrorUIState.FullScreenError -> {
@@ -125,10 +123,12 @@ class UpcomingMoviesFragment : Fragment() {
                 // After showing the toast error update the state in ViewModel
                 upcomingMoviesViewModel.setToastErrorShown(true)
 
-                // If after screen rotation (or other action) the last uiState will be
-                // error, we need to update the list with the fetched data manually
-                if (movieAdapter?.movies?.isEmpty() == true)
-                    displayMovies(upcomingMoviesViewModel.moviesList)
+                // In case of configuration change
+                if (movieAdapter?.movies?.isEmpty() == true) {
+                    movieList?.let {
+                        displayMovies(it)
+                    }
+                }
             }
         }
     }

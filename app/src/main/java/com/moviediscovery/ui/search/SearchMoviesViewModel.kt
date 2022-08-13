@@ -32,7 +32,7 @@ class SearchMoviesViewModel @Inject constructor(
     val searchUIState: StateFlow<UIState<List<Movie>>> = _searchUIState.asStateFlow()
 
     private val _moviesList: MutableList<Movie> = mutableListOf()
-    val moviesList: List<Movie> get() = _moviesList.toList()
+    private val moviesList: List<Movie> get() = _moviesList.toList()
 
     private var ongoingRequestAvailable: Boolean = false
 
@@ -125,7 +125,7 @@ class SearchMoviesViewModel @Inject constructor(
             ErrorUIState.FullScreenError(errorType)
         }
 
-        _searchUIState.value = UIState.ShowError(errorUIState)
+        _searchUIState.value = UIState.ShowError(errorUIState, moviesList)
     }
 
     private fun updatePagingData(currentPage: Int, totalPages: Int) {

@@ -14,19 +14,19 @@ import com.moviediscovery.model.MovieDetails
 import com.moviediscovery.model.MovieType
 
 fun View.makeVisible() {
-    this.isVisible = true
+    isVisible = true
 }
 
 fun View.makeGone() {
-    this.isVisible = false
+    isVisible = false
 }
 
 fun View.setDataIfAvailable(isVisible: Boolean, execute: () -> Unit) {
     if (isVisible) {
-        this.makeVisible()
+        makeVisible()
         execute()
     } else {
-        this.makeGone()
+        makeGone()
     }
 }
 
@@ -59,15 +59,15 @@ fun List<Movie>.toEntityMovies(movieType: MovieType) = map {
 }
 
 fun MovieDetailApiModel.toMovieDetails() = MovieDetails(
-    id = this.id,
-    title = this.title,
-    overview = this.overview,
-    popularity = this.popularity,
-    movieImageUrl = this.movieImageUrl,
-    releaseDate = this.releaseDate,
-    tagline = this.tagline,
-    voteAverage = this.voteAverage,
-    genres = this.genres?.map {
+    id = id,
+    title = title,
+    overview = overview,
+    popularity = popularity,
+    movieImageUrl = movieImageUrl,
+    releaseDate = releaseDate,
+    tagline = tagline,
+    voteAverage = voteAverage,
+    genres = genres?.map {
         it.name
     }
 )

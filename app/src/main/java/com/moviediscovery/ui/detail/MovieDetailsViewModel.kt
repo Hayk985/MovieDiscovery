@@ -38,7 +38,7 @@ class MovieDetailsViewModel @Inject constructor(
                     _movieDetailsLiveData.postValue(UIState.ShowError(
                         ErrorUIState.FullScreenError(ErrorUtils.propagateError(
                             response.exception
-                        ))
+                        )), null
                     ))
                 }
             }

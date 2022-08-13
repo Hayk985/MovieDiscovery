@@ -14,9 +14,9 @@ import com.moviediscovery.app.makeGone
 import com.moviediscovery.app.makeVisible
 import com.moviediscovery.databinding.FragmentMoviesBinding
 import com.moviediscovery.model.Movie
-import com.moviediscovery.ui.MovieAdapter
 import com.moviediscovery.model.uistate.ErrorUIState
 import com.moviediscovery.model.uistate.UIState
+import com.moviediscovery.ui.MovieAdapter
 import com.moviediscovery.utils.ConnectivityHelper
 import com.moviediscovery.utils.RecyclerViewEndReachedListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,7 +36,7 @@ class PopularMoviesFragment : Fragment() {
     ): View {
         _binding = FragmentMoviesBinding.inflate(inflater, container, false)
 
-        movieAdapter = MovieAdapter { movieId ->
+        movieAdapter = MovieAdapter(requireContext()) { movieId ->
             if (!ConnectivityHelper.hasInternetConnection()) {
                 Toast.makeText(
                     context, getString(R.string.error_no_connection), Toast.LENGTH_SHORT
@@ -96,11 +96,9 @@ class PopularMoviesFragment : Fragment() {
                     displayMovies(state.data)
                 }
                 is UIState.ShowError -> {
-                    displayError(state.errorUIState)
+                    displayError(state.errorUIState, state.data)
                 }
-                else -> {
-                    /* NO-OP */
-                }
+                else -> Unit
             }
         }
     }
@@ -110,7 +108,7 @@ class PopularMoviesFragment : Fragment() {
         movieAdapter?.movies = movieList
     }
 
-    private fun displayError(errorUIState: ErrorUIState) {
+    private fun displayError(errorUIState: ErrorUIState, movieList: List<Movie>?) {
         val errorMessage = getString(errorUIState.errorType.errorMessageResId)
         when (errorUIState) {
             is ErrorUIState.FullScreenError -> {
@@ -124,10 +122,12 @@ class PopularMoviesFragment : Fragment() {
                 // After showing the toast error update the state in ViewModel
                 popularMoviesViewModel.setToastErrorShown(true)
 
-                // If after screen rotation (or other action) the last uiState will be
-                // error, we need to update the list with the fetched data manually
-                if (movieAdapter?.movies?.isEmpty() == true)
-                    displayMovies(popularMoviesViewModel.moviesList)
+                // In case of configuration change
+                if (movieAdapter?.movies?.isEmpty() == true) {
+                    movieList?.let {
+                        displayMovies(it)
+                    }
+                }
             }
         }
     }

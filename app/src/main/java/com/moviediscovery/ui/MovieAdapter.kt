@@ -1,5 +1,6 @@
 package com.moviediscovery.ui
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -11,9 +12,11 @@ import com.moviediscovery.model.Movie
 import com.moviediscovery.utils.UrlHelper
 
 class MovieAdapter(
+    context: Context,
     private val onMovieClicked: (movieId: Int) -> Unit,
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
+    private val layoutInflater = LayoutInflater.from(context)
     private var diffUtilCallback = object : DiffUtil.ItemCallback<Movie>() {
         override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             return oldItem.id == newItem.id
@@ -43,11 +46,7 @@ class MovieAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder =
         MovieViewHolder(
-            ItemMovieBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+            ItemMovieBinding.inflate(layoutInflater, parent, false)
         )
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {

@@ -26,7 +26,7 @@ class TopRatedMoviesViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _moviesList: MutableList<Movie> = mutableListOf()
-    val moviesList: List<Movie> get() = _moviesList.toList()
+    private val moviesList: List<Movie> get() = _moviesList.toList()
 
     private val _uiStateLiveData = MutableLiveData<UIState<List<Movie>>>()
     val uiStateLiveData: LiveData<UIState<List<Movie>>> get() = _uiStateLiveData
@@ -71,7 +71,8 @@ class TopRatedMoviesViewModel @Inject constructor(
         if (pagination.hasNextPage() && !ongoingRequestAvailable) {
             if (!ConnectivityHelper.hasInternetConnection()) {
                 _uiStateLiveData.postValue(UIState.ShowError(
-                    ErrorUIState.ToastError(ErrorType.NETWORK_ERROR)
+                    ErrorUIState.ToastError(ErrorType.NETWORK_ERROR),
+                    moviesList
                 ))
                 return
             }
@@ -98,7 +99,7 @@ class TopRatedMoviesViewModel @Inject constructor(
             ErrorUIState.FullScreenError(errorType)
         }
 
-        _uiStateLiveData.postValue(UIState.ShowError(errorUIState))
+        _uiStateLiveData.postValue(UIState.ShowError(errorUIState, moviesList))
     }
 
     fun setToastErrorShown(toastErrorShown: Boolean) {

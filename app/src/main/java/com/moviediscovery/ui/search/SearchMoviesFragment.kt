@@ -46,7 +46,7 @@ class SearchMoviesFragment : Fragment() {
         binding.viewSearchMovies.imeOptions =
             binding.viewSearchMovies.imeOptions or EditorInfo.IME_FLAG_NO_EXTRACT_UI
 
-        movieAdapter = MovieAdapter { movieId ->
+        movieAdapter = MovieAdapter(requireContext()) { movieId ->
             if (!ConnectivityHelper.hasInternetConnection()) {
                 Toast.makeText(
                     context, getString(R.string.error_no_connection), Toast.LENGTH_SHORT
@@ -125,7 +125,7 @@ class SearchMoviesFragment : Fragment() {
                         is UIState.ShowError -> {
                             binding.tvEmptySearchResult.makeGone()
                             binding.viewNoSearchResult.makeGone()
-                            displayError(it.errorUIState)
+                            displayError(it.errorUIState, it.data)
                         }
                     }
                 }
@@ -142,7 +142,7 @@ class SearchMoviesFragment : Fragment() {
         movieAdapter?.movies = emptyList()
     }
 
-    private fun displayError(errorUIState: ErrorUIState) {
+    private fun displayError(errorUIState: ErrorUIState, movieList: List<Movie>?) {
         val errorMessage = getString(errorUIState.errorType.errorMessageResId)
         when (errorUIState) {
             is ErrorUIState.FullScreenError -> {
@@ -152,10 +152,12 @@ class SearchMoviesFragment : Fragment() {
             is ErrorUIState.ToastError -> {
                 Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
 
-                // If after screen rotation (or other action) the last uiState will be
-                // error, we need to update the list with the fetched data manually
-                if (movieAdapter?.movies?.isEmpty() == true)
-                    displayMovies(searchMoviesViewModel.moviesList)
+                // In case of configuration change
+                if (movieAdapter?.movies?.isEmpty() == true) {
+                    movieList?.let {
+                        displayMovies(it)
+                    }
+                }
             }
         }
     }
